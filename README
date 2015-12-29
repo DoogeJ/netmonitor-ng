@@ -1,0 +1,58 @@
+=======
+README
+=======
+Firstly let me thank you for deciding to try netmon, if you
+have any problems please look at the FAQ if that fails you can 
+contact me by email or at the projects homepage.
+
+Project homepage - https://sourceforge.net/projects/netmonitor/
+Contact Author: hellcat82@iprimus.com.au
+
+ABOUT
+------
+netmon is a network monitoring console application which shows
+the bandwidth consumed and the total transmitted and recieved
+data. It also logs this data so that it can retain these values
+after a crash or restart. This makes netmon handy for people who
+have broadband connections that require payment per download
+volume.
+
+Its main features are
+-Shows transfer rates and data totals with dynamic units
+-Ability to force units
+-Logs the data totals so that it can retain these values
+ after restarts or crashes
+-Low resource usage
+-Output fits on a 66x9 terminal screen
+-Ability to log up to 20971520TB
+
+COMPILING
+------------
+To compile netmon type the following command
+./configure
+./make
+./make install
+
+For more information please see the INSTALL file
+
+INSTALLING
+------------
+Please see INSTALL file
+
+UNINSTALLING
+-------------
+To uninstall netmon you need root priviliges, unistall with
+make uninstall
+
+MANUAL DATA SETUP
+-----------------
+Due to the change in log file format this method is now 
+depreciated. Please run netmonitor with the --config flag
+
+RUNNING NETMON
+-------------
+To run netmon type the following
+netmonitor
+
+To find out more about netmon type
+netmonitor --help or man netmonitor
