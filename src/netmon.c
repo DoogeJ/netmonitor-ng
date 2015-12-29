@@ -3,13 +3,13 @@
  *           and logging program for linux. The aim is to provide a bandwidth
  *           meter type program that is small and simple
  *
- *Author:    Dwayne Hoy
+ *Author:    Dwayne Hoy / DoogeJ
  *
  *Date:      Monday, September 05 2005
  *
- *Version:   0.5
+ *Version:   0.5.1
  *
- *Mod date:  Sunday, October 09 2005
+ *Mod date:  Tuesday, December 29 2015
  ****************************************************************************/
 
 
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]){
   
   if((conf_file = fopen(confpath, "r")) == NULL){
     fprintf(stderr, "Error: Unable to open config file. ");
-    fprintf(stderr, "Please run with -config flag\n");
+    fprintf(stderr, "Please run with --config flag\n");
     exit(EXIT_FAILURE);
   }
 
@@ -102,7 +102,7 @@ int j, i = atoi(t_buff);
   /*Open log file for reading*/
   if((log_file = fopen(logpath, "r")) == NULL){
     fprintf(stderr, "Error: Unable to open log file. ");
-    fprintf(stderr, "Please run with -config flag\n");
+    fprintf(stderr, "Please run with --config flag\n");
     exit(EXIT_FAILURE);
   }
   

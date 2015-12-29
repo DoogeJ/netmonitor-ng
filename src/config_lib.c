@@ -3,13 +3,13 @@
  *               config_lib.c. It is the functions for the 
  *               configuration subprogram for netmonitor.
  *
- *Author: Dwayne Hoy
+ *Author: Dwayne Hoy / DoogeJ
  *
  *Date: Tuesday, September 20 2005
  *
- *Version: 0.5
+ *Version: 0.5.1
  *
- *Modified: Saturday, September 24 2005
+ *Modified: Tuesday, December 29 2015
  ******************************************************************/
 #include "config_lib.h"
 
@@ -112,7 +112,7 @@ void conf_add(conf_t *dev, int size){
   while(c_buff[0] != 'e'){
     clrscrn();
     fprintf(stdout,"Add Device\n");
-    fprintf(stdout, "\nAvailible Devices\n");
+    fprintf(stdout, "\nAvailable Devices\n");
     for(i = 0; i < size; i++){
       if(dev[i].added == 0)
 	fprintf(stdout, "%d - %s\n", i , dev[i].dev);
@@ -144,7 +144,7 @@ void conf_remove(conf_t *dev, int size){
   while(c_buff[0] != 'e'){
     clrscrn();
     fprintf(stdout,"Remove Device\n");
-    fprintf(stdout, "\nAvailible Devices\n");
+    fprintf(stdout, "\nAvailable Devices\n");
     for(i = 0; i < size; i++){
       if(dev[i].added == 0)
 	fprintf(stdout, "%s\n", dev[i].dev);

@@ -1,13 +1,13 @@
 /***********************************************************************
  *net_lib.c : Implements the function definitions of net_lib.h, which
  *            are for use with netmon.c
- *Author: Dwayne Hoy
+ *Author: Dwayne Hoy / DoogeJ
  *
  *Date: Friday, September 09 2005
  *
- *Version: 0.5
+ *Version: 0.5.1
  *
- *Modified: Sunday, October 09 2005
+ *Mod date: Tuesday, December 29 2015
  **********************************************************************/
 
 #include "net_lib.h"
@@ -238,7 +238,7 @@ int parse_args(int argc, char *argv[]){
 }
 
 void display_help(){
-  fprintf(stdout, "\nNetmon version 0.5\n");
+  fprintf(stdout, "\nNetmon version 0.5.1\n");
   fprintf(stdout, "Usage [--help] [--options]....\n\n");
   fprintf(stdout, "The following command lines are availible\n");
   fprintf(stdout, "GENERAL\n");
