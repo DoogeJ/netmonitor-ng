@@ -2,13 +2,13 @@
  *config_lib.h: Provides funtion definitions for the configuration
  *              subprogram for netmonitor
  *
- *Author: Dwayne Hoy
+ *Author:    Dwayne Hoy / DoogeJ
  *
- *Date: Tuesday, September 20 2005
+ *Date:      September 20 2005
  *
- *Version: 0.5
+ *Version:   0.5.2
  *
- *Modified: Saturday, September 24 2005
+ *Modified:  December 30 2015
  *****************************************************************/
 #ifndef _CONFIG_LIB_H
 #define _CONFIG_LIB_H
@@ -28,7 +28,7 @@ typedef struct config_dev{
 }conf_t;
 
 /******************************************************************
- *void config(): Runs the config subprogram to configure users 
+ *void config(): Runs the config subprogram to configure users
  *               data files.
  *
  *Recieves:      char* to the dev file path
@@ -60,7 +60,7 @@ int vercheck(FILE *dev_file);
  *void conf_add(): Adds devices to the configuration buffer for
  *                 saving.
  *
- *Recieves: A conf_t pointer holding the buffer, and an int 
+ *Recieves: A conf_t pointer holding the buffer, and an int
  *          value holding the size of the buffer;
  *
  *Returns: NA
@@ -68,10 +68,10 @@ int vercheck(FILE *dev_file);
 void conf_add(conf_t *dev, int size);
 
 /***************************************************************
- *void conf_remove: Removes devices from the configuration 
+ *void conf_remove: Removes devices from the configuration
  *                  buffer;
  *
- *Recieves: A conf_t pointer holding the buffer, and an int 
+ *Recieves: A conf_t pointer holding the buffer, and an int
  *          value holding the size of the buffer;
  *
  *Returns: NA

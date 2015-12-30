@@ -1,14 +1,14 @@
 /************************************************************
- *net_data.c: Functions for the functions and struct in 
+ *net_data.c: Functions for the functions and struct in
  *            net_data.h, to be used with netmon.c
  *
- *Author: Dwayne Hoy
+ *Author:    Dwayne Hoy / DoogeJ
  *
- *Date: Friday, September 09 2005
+ *Date:      September 09 2005
  *
- *Version: 0.5
+ *Version:   0.5.2
  *
- *Modified: Sunday, October 09 2005
+ *Modified:  December 30 2015
  ************************************************************/
 #include "net_data.h"
 
@@ -23,7 +23,7 @@ void init_net_t(net_t *Ndata){
   Ndata->lval_tx = 0;
 }
 /**********************SET FUNCTIONS************************/
-void set_rx(net_t *Ndata, long long devval ,long long bval, 
+void set_rx(net_t *Ndata, long long devval ,long long bval,
 	    long long gval){
   Ndata->pre_rx = bval;
   Ndata->byte_rx = bval;
@@ -31,7 +31,7 @@ void set_rx(net_t *Ndata, long long devval ,long long bval,
   Ndata->lval_rx = devval;
 }
 
-void set_tx(net_t *Ndata, long long devval ,long long bval, 
+void set_tx(net_t *Ndata, long long devval ,long long bval,
 	    long long gval){
   Ndata->pre_tx = bval;
   Ndata->byte_tx = bval;

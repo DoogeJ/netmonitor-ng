@@ -1,13 +1,14 @@
 /***********************************************************************
  *net_lib.c : Implements the function definitions of net_lib.h, which
  *            are for use with netmon.c
- *Author: Dwayne Hoy / DoogeJ
  *
- *Date: Friday, September 09 2005
+ *Author:    Dwayne Hoy / DoogeJ
  *
- *Version: 0.5.1
+ *Date:      September 09 2005
  *
- *Mod date: Tuesday, December 29 2015
+ *Version:   0.5.2
+ *
+ *Modified:  December 30 2015
  **********************************************************************/
 
 #include "net_lib.h"
@@ -18,7 +19,7 @@ void display(net_t *Ndata, int size ,double time){
   long double tx;          //Stores the tx total
   long double rx;          //Stores the rx total
   long double rx_trans;    //Stores the rx rate
-  long double tx_trans;    //Stores the tx rate 
+  long double tx_trans;    //Stores the tx rate
   char tx_unit[4];         //Unit to display tx in
   char rx_unit[4];         //Unit to display rx in
   char rx_trans_unit[4];   //Unit to display rx rate in
@@ -29,26 +30,21 @@ void display(net_t *Ndata, int size ,double time){
   fprintf(stdout, "%s %16s %10s %14s %10s\n", "Device", "Downloaded",
 	  "Rate" ,"Uploaded", "Rate");
 
-  if(!DIS_COMPACT)            /*Seperator lines*/
-    fprintf(stdout, "\n");
-  
   for(i = 0; i < size; i++){
-    tx = to_unit(tx_unit, get_txbtotal(&Ndata[i]), 
+    tx = to_unit(tx_unit, get_txbtotal(&Ndata[i]),
 		 get_txgtotal(&Ndata[i]), 1);
-    rx = to_unit(rx_unit, get_rxbtotal(&Ndata[i]), 
+    rx = to_unit(rx_unit, get_rxbtotal(&Ndata[i]),
 		 get_rxgtotal(&Ndata[i]), 1);
-    
+
     tx_trans = get_txRate(&Ndata[i], time);
     tx_trans = to_unit(tx_trans_unit, tx_trans, 0, 0);
     rx_trans = get_rxRate(&Ndata[i], time);
     rx_trans = to_unit(rx_trans_unit, rx_trans, 0, 0);
-    
+
     fprintf(stdout, "%4s %15.2Lf %2s %9.2Lf %2s/s %8.2Lf %2s %9.2Lf %2s/s\n",
-	    Ndata[i].device , rx, rx_unit, rx_trans, rx_trans_unit, tx, 
+	    Ndata[i].device , rx, rx_unit, rx_trans, rx_trans_unit, tx,
 	    tx_unit, tx_trans, tx_trans_unit);
-   
-    if(!DIS_COMPACT)          /*Seperator lines*/
-      fprintf(stdout,"\n");
+
   }
 }
 
@@ -80,12 +76,12 @@ long double to_unit(char *unit, long double bval, long double gval,
     tval = gval;
     tval += (bval / (long double)1073741824);
     return tval;
-  }  
+  }
   else if(bval < 1024 && gval == 0){
     strcpy(unit, "B");
     return bval;
   }
-  else if(bval < 1048576 && gval == 0){    
+  else if(bval < 1048576 && gval == 0){
     strcpy(unit, "KB");
     tval = (bval / 1024);
     return tval;
@@ -93,7 +89,7 @@ long double to_unit(char *unit, long double bval, long double gval,
   else if(bval < 1073741824 && gval == 0){
     strcpy(unit, "MB");
     tval = (bval / 1048576);
-    return tval;   
+    return tval;
   }
   else{
     strcpy(unit, "GB");
@@ -114,7 +110,7 @@ int checkfile(char *path){
   }
   if(S_ISLNK(attrib.st_mode)){
     if(DEBUG)
-      fprintf(stderr, "checkfile: Error: File is a symbolic link\n"); 
+      fprintf(stderr, "checkfile: Error: File is a symbolic link\n");
     return -2;
   }
   if(DEBUG)
@@ -168,9 +164,9 @@ int write_to_log(net_t *Ndata, char* path, int size){
     fprintf(stderr, "write_to_log: Error writting to log\n");
     return -1;
   }
-  
+
   for(i = 0; i < size; i++){
-    if((snprintf(temp_string, 300, "[%s]\n%Lu\n%Lu\n%Lu\n%Lu\n", 
+    if((snprintf(temp_string, 300, "[%s]\n%Lu\n%Lu\n%Lu\n%Lu\n",
 		 Ndata[i].device,
 		 get_rxbtotal(&Ndata[i]),
 		 get_rxgtotal(&Ndata[i]),
@@ -207,9 +203,6 @@ int parse_args(int argc, char *argv[]){
       display_help();
       return -1;
     }
-    else if(strcmp(argv[i], "--compact") == 0){
-      DIS_COMPACT = 1;
-    }
     else if(strcmp (argv[i], "--forceTGB") == 0){
       FORCE_UNIT = 1;
     }
@@ -232,19 +225,18 @@ int parse_args(int argc, char *argv[]){
       fprintf(stderr, "Invalid argument please use --help flag for more details\n");
       return -1;
     }
- 
+
   }
   return 0;
 }
 
 void display_help(){
-  fprintf(stdout, "\nNetmon version 0.5.1\n");
+  fprintf(stdout, "\nNetmon version 0.5.2\n");
   fprintf(stdout, "Usage [--help] [--options]....\n\n");
   fprintf(stdout, "The following command lines are availible\n");
   fprintf(stdout, "GENERAL\n");
   fprintf(stdout, "--help      -> Displays this text\n");
   fprintf(stdout, "--config    -> Runs the configuration wizard\n");
-  fprintf(stdout, "--compact   -> Removes spare lines from the display\n");
   fprintf(stdout, "Note: The --help and --config flags cannot be used with\n");
   fprintf(stdout, "      any other arguments\n\n");
   fprintf(stdout, "FORCE UNITS\n");

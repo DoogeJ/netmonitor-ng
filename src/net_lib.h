@@ -1,13 +1,13 @@
 /*******************************************************************
  *net_lib.h: Function definitions to be used with netmon.c
  *
- *Author: Dwayne Hoy
+ *Author:    Dwayne Hoy / DoogeJ
  *
- *Date: Friday, September 09 2005
+ *Date:      September 09 2005
  *
- *Version: 0.5
+ *Version:   0.5.2
  *
- *Modified: Sunday, October 09 2005
+ *Modified:  December 30 2015
  *******************************************************************/
 #ifndef _NET_LIB
 #define _NET_LIB
@@ -32,15 +32,15 @@ static int FORCE_UNIT = 0;
 static int FORCE_R_UNIT = 0;
 
 /*******************************************************************
- *void display(): Prints values stored in Ndata to the screen with 
- *                a table like format, before each print to screen 
+ *void display(): Prints values stored in Ndata to the screen with
+ *                a table like format, before each print to screen
  *                it flushes the console.
- *  
- *Recieves:       net_t array, int size of the array, and a double 
+ *
+ *Recieves:       net_t array, int size of the array, and a double
  *                time value
  *Returns:        NA
  */
-void display(net_t *Ndata, int size ,double time); 
+void display(net_t *Ndata, int size ,double time);
 
 /*******************************************************************
  *void clearsrceen(): Clears previous text from the console screen
@@ -51,27 +51,27 @@ void display(net_t *Ndata, int size ,double time);
  */
 void clearscreen();
 /*******************************************************************
- *int parse_args(): Parses the command line arguments and 
- *                  performs the appropriate operations for the 
+ *int parse_args(): Parses the command line arguments and
+ *                  performs the appropriate operations for the
  *                  arguments.
- *  
- *Recieves:         int number of arguments, char pointer to 
+ *
+ *Recieves:         int number of arguments, char pointer to
  *                  argument vector.
  *
  *Returns:          A int value which tells the caller what
  *                  argument was found
- */ 
+ */
 int parse_args(int argc, char* argv[]);
 
 /*******************************************************************
  *long double to_unit(): Modifies a long number to a larger unit
- *                       and changes the it's unit value to that 
+ *                       and changes the it's unit value to that
  *                       unit
  *
  *Recieves:              char* to a string holding the units
  *                       long long value to be modified
  *
- *Returns:               long double value that is the modified 
+ *Returns:               long double value that is the modified
  *                       long long value
  */
 long double to_unit(char *unit, long double bval, long double gval ,

@@ -1,15 +1,15 @@
 /******************************************************************
  *config_lib.c : Provides function definitions for the header file
- *               config_lib.c. It is the functions for the 
+ *               config_lib.c. It is the functions for the
  *               configuration subprogram for netmonitor.
  *
- *Author: Dwayne Hoy / DoogeJ
+ *Author:    Dwayne Hoy / DoogeJ
  *
- *Date: Tuesday, September 20 2005
+ *Date:      September 20 2005
  *
- *Version: 0.5.1
+ *Version:   0.5.2
  *
- *Modified: Tuesday, December 29 2015
+ *Modified:  December 30 2015
  ******************************************************************/
 #include "config_lib.h"
 
@@ -63,7 +63,7 @@ void config(char* dev_path, char* home_path){
     while(getc(stdin) != '\n');
     if(isdigit(c_buff)){
       iput = atoi(&c_buff);
-   
+
       switch(iput){
       case 1:
 	conf_add(devs, num_dev);
@@ -125,7 +125,7 @@ void conf_add(conf_t *dev, int size){
     fprintf(stderr, "\nPlease select device add (type 'e' when finished): ");
     fprintf(stdout, " ");
     read(STDIN_FILENO, c_buff, sizeof(c_buff));
-    
+
     if(isdigit(c_buff[0])){
       val = atoi(c_buff);
       if(val < size){
@@ -157,7 +157,7 @@ void conf_remove(conf_t *dev, int size){
     fprintf(stderr, "\nPlease select device add (type 'e' when finished): ");
     fprintf(stdout, " ");
     read(STDIN_FILENO, c_buff, sizeof(c_buff));
-    
+
     if(isdigit(c_buff[0])){
       val = atoi(c_buff);
       if(val < size){
@@ -185,7 +185,7 @@ int conf_save(conf_t *dev, int size, char* homepath){
   fprintf(stdout, "This will erase all previous data. Are you sure ? [y|n]");
   c_buff = getc(stdin);
   while(getc(stdin) != '\n');
-  
+
   if(c_buff == 'y'){
     /*Creates Paths*/
     strcpy(device_path, homepath);
@@ -197,16 +197,16 @@ int conf_save(conf_t *dev, int size, char* homepath){
     /*checks and creates directory*/
     if(access(netmon_path, F_OK) == -1)
       mkdir(netmon_path, S_IRWXU);
-    
+
     if((dev_conf = fopen(device_path, "w+")) == NULL){
       fprintf(stderr, "Error: Could not create device file\n");
       return -1;
     }
-    
+
     if((data_dat = fopen(data_path, "w+")) == NULL){
       fprintf(stderr, "Error: Cound not create data file\n") ;
       return -1;
-    } 
+    }
     /*Prints version number*/
     fprintf(data_dat, "%s\n", version);
     /*Print to data file*/

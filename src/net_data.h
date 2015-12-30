@@ -2,13 +2,13 @@
  *net_data.h: Contains the net_t struct and it's functions
  *            for use with netmon.c
  *
- *Author: Dwayne Hoy
+ *Author:    Dwayne Hoy / DoogeJ
  *
- *Date: Friday, September 09 2005
+ *Date:      September 09 2005
  *
- *Version: 0.5
+ *Version:   0.5.2
  *
- *Modified: Sunday, October 09 2005
+ *Modified:  December 30 2015
  ***********************************************************/
 #ifndef NET_DATA
 #define NET_DATA
@@ -29,7 +29,7 @@ typedef struct net_data{
 } net_t;
 
 /************************************************************
- *void init_net_t(): Initiates all values of a net_t 
+ *void init_net_t(): Initiates all values of a net_t
  *                   structure
  *
  *Recieves:          net_t* to the structure to be set
@@ -43,12 +43,12 @@ void init_net_t(net_t *Ndata);
  *
  *Recieves:     *Ndata structure
  *              *devval: initial value from the dev file
- *              *bval: byte value from log file 
+ *              *bval: byte value from log file
  *              *gval: gig value from log file
  *
  *Returns:      NA
  */
-void set_rx(net_t *Ndata, long long devval,  long long bval, 
+void set_rx(net_t *Ndata, long long devval,  long long bval,
 	    long long gval);
 
 /************************************************************
@@ -56,12 +56,12 @@ void set_rx(net_t *Ndata, long long devval,  long long bval,
  *
  *Recieves:     *Ndata structure
  *              *devval: initial value from the dev file
- *              *bval: byte value from log file 
+ *              *bval: byte value from log file
  *              *gval: gig value from log file
  *
  *Returns:      NA
  */
-void set_tx(net_t *Ndata, long long devval, long long bval, 
+void set_tx(net_t *Ndata, long long devval, long long bval,
 	    long long gval);
 /***********************************************************
  *long long get_rxbtotal(): Returns the total rx bytes
@@ -100,27 +100,27 @@ long long get_rxgtotal(net_t *Ndata);
 long long get_txgtotal(net_t *Ndata);
 
 /***********************************************************
- *long long get_rxRate(): Gets the rate of change in two 
+ *long long get_rxRate(): Gets the rate of change in two
  *                        updated set_rx() calls per second
  *
  *Recieves:               net_t structure to get value from.
- *                        double elapsed time between the 
+ *                        double elapsed time between the
  *                        two set_rx() calls
  *
  *Returns:                The rate of change per second
- */ 
+ */
 long long get_rxRate(net_t *Ndata, double elapse);
 
 /***********************************************************
- *long long get_txRate(): Gets the rate of change in two 
+ *long long get_txRate(): Gets the rate of change in two
  *                        updated set_tx() calls per second
  *
  *Recieves:               net_t structure to get value from.
- *                        double elapsed time between the 
+ *                        double elapsed time between the
  *                        two set_tx() calls
  *
  *Returns:                The rate of change per second.
- */ 
+ */
 long long get_txRate(net_t *Ndata, double elapse);
 
 /**********************************************************

@@ -1,15 +1,15 @@
 /*****************************************************************************
- *netmon.c:  Main program for netmonitor, netmonitor is a network monitoring  
+ *netmon.c:  Main program for netmonitor, netmonitor is a network monitoring
  *           and logging program for linux. The aim is to provide a bandwidth
  *           meter type program that is small and simple
  *
  *Author:    Dwayne Hoy / DoogeJ
  *
- *Date:      Monday, September 05 2005
+ *Date:      September 05 2005
  *
- *Version:   0.5.1
+ *Version:   0.5.2
  *
- *Mod date:  Tuesday, December 29 2015
+ *Modified:  December 30 2015
  ****************************************************************************/
 
 
@@ -26,17 +26,17 @@ int main(int argc, char *argv[]){
   char logpath[80];
   strcpy(logpath, homepath);
   strcat(logpath, "/.netmon/data.dat");
- 
+
   char confpath[80];
   strcpy(confpath, homepath);
   strcat(confpath, "/.netmon/device.conf");
-  
-  
+
+
   /*File pointers*/
-  FILE *dev_file = NULL;              
-  FILE *log_file = NULL;               
-  FILE *conf_file = NULL;              
-  
+  FILE *dev_file = NULL;
+  FILE *log_file = NULL;
+  FILE *conf_file = NULL;
+
   net_t *data;
   int args;                       /*Arg return value*/
   char t_buff[160];               /*Temporary buffer*/
@@ -55,9 +55,9 @@ int main(int argc, char *argv[]){
   }
   if(args == -1)
     exit(EXIT_SUCCESS);
-  
+
   /***************************CONFIG FILE ACCESS***************************/
-  
+
   if((conf_file = fopen(confpath, "r")) == NULL){
     fprintf(stderr, "Error: Unable to open config file. ");
     fprintf(stderr, "Please run with --config flag\n");
@@ -98,14 +98,14 @@ int j, i = atoi(t_buff);
   long long txgval[5];
   long long clearrxval[5];
   long long cleartxval[5];
-  
+
   /*Open log file for reading*/
   if((log_file = fopen(logpath, "r")) == NULL){
     fprintf(stderr, "Error: Unable to open log file. ");
     fprintf(stderr, "Please run with --config flag\n");
     exit(EXIT_FAILURE);
   }
-  
+
   /*Checks log file version*/
   if(!fgets(t_buff, sizeof(t_buff), log_file)){
     fprintf(stderr, "Error: Unable to read log file\n");
@@ -118,19 +118,19 @@ int j, i = atoi(t_buff);
   for(i = 0; i < size; i++){
     if(DEBUG)
       fprintf(stderr, "main:LOG FILE ACCESS: Attempting to read log file\n");
-    
+
     if(!fgets(t_buff, sizeof(t_buff), log_file)){
       fprintf(stderr, "Error: Unable to read log file\n");
     }
-    
+
     /*Find correct device*/
     for(index = 0; index < size; index ++){
       if(strstr(t_buff, data[index].device) != NULL){
 	break;
       }
-    }    
+    }
     if(DEBUG)
-      fprintf(stderr, "main:LOG FILE ACCESS: Found device at position %d\n", 
+      fprintf(stderr, "main:LOG FILE ACCESS: Found device at position %d\n",
 	      index);
     /*Reads in rx byte value from log*/
     if(!fgets(t_buff, sizeof(t_buff), log_file)){
@@ -138,17 +138,17 @@ int j, i = atoi(t_buff);
       exit(EXIT_FAILURE);
     }
     sscanf(t_buff, "%lld", &rxbval[index]);
-    
+
     /*Reads in rx gig value from log*/
     if(!fgets(t_buff, sizeof(t_buff), log_file)){
       fprintf(stderr, "Error: Unable to retrieve data values\n");
       exit(EXIT_FAILURE);
     }
- 
+
     sscanf(t_buff, "%lld", &rxgval[index]);
-    
- 
-    
+
+
+
     /*Reads in tx byte value from log*/
     if(!fgets(t_buff, sizeof(t_buff), log_file)){
       fprintf(stderr, "Error: Unable to retrieve data values\n");
@@ -165,7 +165,7 @@ int j, i = atoi(t_buff);
   }
 
   fclose(log_file);
-    
+
     /***************************DEV FILE ACCESS****************************/
   /*Check dev file*/
   if((checkfile(filepath)) != 0){
@@ -180,7 +180,7 @@ int j, i = atoi(t_buff);
     fprintf(stderr, "Error: Unable to open dev file\n");
     exit(EXIT_FAILURE);
   }
-  
+
   /*Check dev file version*/
   if((ver_check(dev_file)) < 0){
     fprintf(stderr, "Error: Incorrect dev version\n");
@@ -198,7 +198,7 @@ int j, i = atoi(t_buff);
   while(1){
     if(DEBUG)
       fprintf(stderr, "main:UPDATE LOOP: Entering update loop now\n");
-    
+
     /*removes headings*/
     for(i = 0; i < 1; i++){
       if( !fgets(t_buff, sizeof(t_buff), dev_file)){
@@ -223,7 +223,7 @@ int j, i = atoi(t_buff);
       if(DEBUG){
 	fprintf(stderr, "main:UPDATE LOOP: Exited out of update loops ");
 	fprintf(stderr, "device check\n");
-      }      
+      }
       if(found){
 	if(DEBUG)
 	  fprintf(stderr, "main:UPDATE LOOP: Entered data update section\n");
@@ -231,7 +231,7 @@ int j, i = atoi(t_buff);
 	delim = strchr(t_buff, ':');
 
 	if( *( delim + 1 ) == ' ' ){
-	  sscanf(t_buff,"%*s %Lu %*d %*d %*d %*d %*d %*d %*d %Lu ", 
+	  sscanf(t_buff,"%*s %Lu %*d %*d %*d %*d %*d %*d %*d %Lu ",
 		 &temprx, &temptx);
 	  if(first_run){
 	      clearrxval[j] = temprx;
@@ -248,9 +248,9 @@ int j, i = atoi(t_buff);
 	    if(mod_dev[i] == ' '){
 	      mod_dev[i] = '\0';
 	      break;
-	    } 
+	    }
 	  }
-	  temprx = atoll(mod_dev);        
+	  temprx = atoll(mod_dev);
 	  sscanf(t_buff,"%*s %*d %*d %*d %*d %*d %*d %*d %Lu ", &temptx);
 	  if(first_run)
 	    {
@@ -271,10 +271,10 @@ int j, i = atoi(t_buff);
     first_run = 0;
     rewind(dev_file);
     if(DEBUG)
-      fprintf(stderr, "main:UPDATE LOOP: dev file rewinded\n");    
-    time(&finish);    
+      fprintf(stderr, "main:UPDATE LOOP: dev file rewinded\n");
+    time(&finish);
     if(DEBUG)
-      fprintf(stderr, "main:UPDATE LOOP: start time is %d seconds\n", (int)start);   
+      fprintf(stderr, "main:UPDATE LOOP: start time is %d seconds\n", (int)start);
     if(DEBUG)
       fprintf(stderr, "main:UPDATE LOOP: finish time is %d seconds\n", (int)finish);
     time(&finish);
