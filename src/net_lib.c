@@ -27,7 +27,7 @@ void display(net_t *Ndata, int size ,double time){
   if(!DEBUG)
     clearscreen();
   /***********Prints title header*********/
-  fprintf(stdout, "%s %16s %10s %14s %10s\n", "Device", "Downloaded",
+  fprintf(stdout, "%s %16s %14s %11s %14s\n", "Device", "Downloaded",
 	  "Rate" ,"Uploaded", "Rate");
 
   for(i = 0; i < size; i++){
