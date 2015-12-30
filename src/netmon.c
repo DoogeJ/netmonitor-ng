@@ -25,11 +25,11 @@ int main(int argc, char *argv[]){
 
   char logpath[80];
   strcpy(logpath, homepath);
-  strcat(logpath, "/.netmon/data.dat");
+  strcat(logpath, "/.netmonitor/data.dat");
 
   char confpath[80];
   strcpy(confpath, homepath);
-  strcat(confpath, "/.netmon/device.conf");
+  strcat(confpath, "/.netmonitor/device.conf");
 
 
   /*File pointers*/

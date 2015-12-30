@@ -191,9 +191,9 @@ int conf_save(conf_t *dev, int size, char* homepath){
     strcpy(device_path, homepath);
     strcpy(data_path, homepath);
     strcpy(netmon_path, homepath);
-    strcat(device_path, "/.netmon/device.conf");
-    strcat(data_path, "/.netmon/data.dat");
-    strcat(netmon_path, "/.netmon");
+    strcat(device_path, "/.netmonitor/device.conf");
+    strcat(data_path, "/.netmonitor/data.dat");
+    strcat(netmon_path, "/.netmonitor");
     /*checks and creates directory*/
     if(access(netmon_path, F_OK) == -1)
       mkdir(netmon_path, S_IRWXU);
