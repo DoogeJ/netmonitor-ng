@@ -231,23 +231,10 @@ int parse_args(int argc, char *argv[]){
 }
 
 void display_help(){
-  fprintf(stdout, "\nNetmon version 0.5.2\n");
-  fprintf(stdout, "Usage [--help] [--options]....\n\n");
-  fprintf(stdout, "The following command lines are availible\n");
-  fprintf(stdout, "GENERAL\n");
-  fprintf(stdout, "--help      -> Displays this text\n");
-  fprintf(stdout, "--config    -> Runs the configuration wizard\n");
-  fprintf(stdout, "Note: The --help and --config flags cannot be used with\n");
-  fprintf(stdout, "      any other arguments\n\n");
-  fprintf(stdout, "FORCE UNITS\n");
-  fprintf(stdout, "--forceTKB  -> Forces Totals to Kilobytes\n");
-  fprintf(stdout, "--forceTMB  -> Forces Totals to Megabytes\n");
-  fprintf(stdout, "--forceTGB  -> Forces Totals to Gigabytes\n");
-  fprintf(stdout, "--forceRKB  -> Forces Data Rate to Kilobytes\n");
-  fprintf(stdout, "--forceRMB  -> Forces Data Rate to Megabytes\n");
-  fprintf(stdout, "--forceRGB  -> Forces Data Rate to Gigabytes\n");
-  fprintf(stdout, "Note: Using too small of a data unit could lead to\n");
-  fprintf(stdout, "      a distorted display, in some cases causing the\n");
-  fprintf(stdout, "      display to become unreadable\n\n");
+  fprintf(stdout, "Usage netmonitor [OPTION]\n");
+  fprintf(stdout, "A network monitoring console application.\n\n");
+  fprintf(stdout, "  --help         Displays this text\n");
+  fprintf(stdout, "  --config       Runs the configuration wizard\n\n");
+  fprintf(stdout, "Project page: https://github.com/DoogeJ/netmonitor-ng\n\n");
 }
 
