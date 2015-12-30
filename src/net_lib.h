@@ -27,10 +27,6 @@
 
 #define DEBUG 0
 
-static int DIS_COMPACT = 0;
-static int FORCE_UNIT = 0;
-static int FORCE_R_UNIT = 0;
-
 /*******************************************************************
  *void display(): Prints values stored in Ndata to the screen with
  *                a table like format, before each print to screen
