@@ -5,10 +5,16 @@ Original project homepage: https://sourceforge.net/projects/netmonitor/
 
 ##ABOUT
 netmonitor is a network monitoring console application which shows the bandwidth consumed and the total transmitted and recieved data.
+
 It also logs this data so that it can retain these values after a crash or restart.
 
 ##COMPILING
-To compile netmon type the following command 
+To compile netmon type the following commands
+
+````sh
 ./configure 
-./make 
-./make install
+
+make 
+
+make install
+````
