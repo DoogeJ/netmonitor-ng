@@ -24,17 +24,17 @@ void config(char* dev_path, char* home_path){
   int i, j, iput, is_dev = 0;
 
   if((dev = fopen(dev_path, "r")) == NULL){
-    fprintf(stderr, "Error: Unable to open dev file for reading\n");
+    fprintf(stderr, "Error: Unable to open device file for reading\n");
     exit(EXIT_FAILURE);
   }
   if(vercheck(dev) != 0){
-    fprintf(stderr, "Error: Dev file is wrong version\n");
+    fprintf(stderr, "Error: Device file is wrong version\n");
     exit(EXIT_FAILURE);
   }
   /*Remove header*/
   for(i = 0; i < 1; i++){
     if( !fgets(t_buff, sizeof(t_buff), dev)){
-      fprintf(stderr, "Error: Unable to read dev file\n");
+      fprintf(stderr, "Error: Unable to read device file\n");
       exit(EXIT_FAILURE);
     }
   }
@@ -81,7 +81,7 @@ void config(char* dev_path, char* home_path){
 	}
 	break;
       case 4:
-	fprintf(stdout, "Are you sure you want to exit without saving [y|n] : ");
+	fprintf(stdout, "Are you sure you want to exit without saving [y|N] : ");
 
 	c_buff = getc(stdin);
 	while(getc(stdin) != '\n');
@@ -97,12 +97,12 @@ void config(char* dev_path, char* home_path){
 }
 
 void display_main_config(){
-  fprintf(stdout, "Netmonitor Main Configuration Menu\n\n");
-  fprintf(stdout, "1 - Add Device\n");
-  fprintf(stdout, "2 - Remove Device\n");
+  fprintf(stdout, "Netmonitor main configuration menu\n\n");
+  fprintf(stdout, "1 - Add device\n");
+  fprintf(stdout, "2 - Remove device\n");
   fprintf(stdout, "3 - Save configuration file and exit\n");
   fprintf(stdout, "4 - Exit without saving\n");
-  fprintf(stdout, "Enter choice :");
+  fprintf(stdout, "Enter choice: ");
 
 }
 
@@ -111,18 +111,18 @@ void conf_add(conf_t *dev, int size){
   int i, val;
   while(c_buff[0] != 'e'){
     clrscrn();
-    fprintf(stdout,"Add Device\n");
-    fprintf(stdout, "\nAvailable Devices\n");
+    fprintf(stdout,"Add device\n");
+    fprintf(stdout, "\nAvailable devices\n");
     for(i = 0; i < size; i++){
       if(dev[i].added == 0)
 	fprintf(stdout, "%d - %s\n", i , dev[i].dev);
     }
-    fprintf(stdout, "\nSelected Devices\n");
+    fprintf(stdout, "\nSelected devices\n");
     for(i = 0; i < size; i++){
       if(dev[i].added == 1)
 	fprintf(stdout, "%s\n", dev[i].dev);
     }
-    fprintf(stderr, "\nPlease select device add (type 'e' when finished): ");
+    fprintf(stderr, "\nPlease select a device to add (type 'e' when finished): ");
     fprintf(stdout, " ");
     read(STDIN_FILENO, c_buff, sizeof(c_buff));
 
@@ -143,18 +143,18 @@ void conf_remove(conf_t *dev, int size){
   int i, val;
   while(c_buff[0] != 'e'){
     clrscrn();
-    fprintf(stdout,"Remove Device\n");
-    fprintf(stdout, "\nAvailable Devices\n");
+    fprintf(stdout,"Remove device\n");
+    fprintf(stdout, "\nAvailable devices\n");
     for(i = 0; i < size; i++){
       if(dev[i].added == 0)
 	fprintf(stdout, "%s\n", dev[i].dev);
     }
-    fprintf(stdout, "\nSelected Devices\n");
+    fprintf(stdout, "\nSelected devices\n");
     for(i = 0; i < size; i++){
       if(dev[i].added == 1)
 	fprintf(stdout, "%d - %s\n", i, dev[i].dev);
     }
-    fprintf(stderr, "\nPlease select device add (type 'e' when finished): ");
+    fprintf(stderr, "\nPlease select a device to remove (type 'e' when finished): ");
     fprintf(stdout, " ");
     read(STDIN_FILENO, c_buff, sizeof(c_buff));
 
@@ -182,7 +182,7 @@ int conf_save(conf_t *dev, int size, char* homepath){
     fprintf(stderr, "Error: Nothing to save\n");
     return 1;
   }
-  fprintf(stdout, "This will erase all previous data. Are you sure ? [y|n]");
+  fprintf(stdout, "This will erase all previous data. Are you sure ? [y|N]");
   c_buff = getc(stdin);
   while(getc(stdin) != '\n');
 
