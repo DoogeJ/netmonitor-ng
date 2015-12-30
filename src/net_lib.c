@@ -59,7 +59,7 @@ void clearscreen(){
 long double to_unit(char *unit, long double bval, long double gval,
 		    int mode){
   long double tval;
-  else if(bval < 1024 && gval == 0){
+  if(bval < 1024 && gval == 0){
     strcpy(unit, "B");
     return bval;
   }
