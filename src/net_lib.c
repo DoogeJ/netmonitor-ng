@@ -59,24 +59,6 @@ void clearscreen(){
 long double to_unit(char *unit, long double bval, long double gval,
 		    int mode){
   long double tval;
-  if((FORCE_UNIT == 3 && mode) || (FORCE_R_UNIT == 3 && !mode)){
-    strcpy(unit, "KB");
-    tval = gval * 1048576;
-    tval += (bval / 1024);
-    return tval;
-  }
-  else if((FORCE_UNIT == 2 && mode)|| (FORCE_R_UNIT == 2 && !mode)){
-    strcpy(unit, "MB");
-    tval = gval * 1024;
-    tval += (bval / 1048576);
-    return tval;
-  }
-  else if((FORCE_UNIT == 1 && mode)||(FORCE_R_UNIT == 1 && !mode)){
-    strcpy(unit, "GB");
-    tval = gval;
-    tval += (bval / (long double)1073741824);
-    return tval;
-  }
   else if(bval < 1024 && gval == 0){
     strcpy(unit, "B");
     return bval;
@@ -202,24 +184,6 @@ int parse_args(int argc, char *argv[]){
     else if(strcmp(argv[i], "--help") == 0){
       display_help();
       return -1;
-    }
-    else if(strcmp (argv[i], "--forceTGB") == 0){
-      FORCE_UNIT = 1;
-    }
-    else if(strcmp (argv[i], "--forceTMB") == 0){
-      FORCE_UNIT = 2;
-    }
-    else if(strcmp (argv[i], "--forceTKB") == 0){
-      FORCE_UNIT = 3;
-    }
-    else if(strcmp (argv[i], "--forceRGB") == 0){
-      FORCE_R_UNIT = 1;
-    }
-    else if(strcmp (argv[i], "--forceRMB") == 0){
-      FORCE_R_UNIT = 2;
-    }
-    else if(strcmp (argv[i], "--forceRKB") == 0){
-      FORCE_R_UNIT = 3;
     }
     else{
       fprintf(stderr, "Invalid argument please use --help flag for more details\n");
