@@ -17,12 +17,23 @@ It also logs this data so that it can retain these values after a crash or resta
 It displays values whose units change dynamically to scale with the value.
 
 ##COMPILING
-To compile netmon type the following commands
+To compile and install netmonitor type the following commands
 
 ````sh
-./configure 
-
 make 
+
+make clean
 
 make install
 ````
+
+make install must be run as superuser.
+
+##UNINSTALLING
+To uninstall netmonitor type the collowing command as superuser
+
+````sh
+make uninstall
+````
+
+Data will be retained but is saved in ~/.netmonitor
