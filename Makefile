@@ -1,5 +1,5 @@
 %.o: src/%.c src/net_lib.h src/net_data.h src/config_lib.h
-	gcc -c -o $@ $< 
+	gcc -c -Wall --ansi -std=c99 --pedantic -o $@ $< 
 
 netmonitor: netmon.o net_lib.o net_data.o config_lib.o
 	gcc -o $@ $^ 
