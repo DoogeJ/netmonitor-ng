@@ -105,7 +105,7 @@ int ver_check(FILE *dev_file){
   int i = 0;
 
   for(i = 0; i < 2; i++){
-    if(!fgets(buff, 80, dev_file)){
+    if(!fgets(buff, sizeof(buff), dev_file)){
       if(DEBUG)
         fprintf(stderr, "ver_check: Error: Unable to read dev file\n");
       return -1;
