@@ -234,7 +234,7 @@ int vercheck(FILE *dev_file){
   char buff[80];
   int i = 0;
   for(i = 0; i < 2; i++){
-    if((read(fileno(dev_file), buff, sizeof(buff))) < 0){
+    if(!fgets(buff, 80, dev_file)){
       return -1;
     }
   }

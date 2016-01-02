@@ -105,9 +105,9 @@ int ver_check(FILE *dev_file){
   int i = 0;
 
   for(i = 0; i < 2; i++){
-    if((read(fileno(dev_file), buff, sizeof(buff))) < 0){
+    if(!fgets(buff, 80, dev_file)){
       if(DEBUG)
-	fprintf(stderr, "ver_check: Error: Unable to read dev file\n");
+        fprintf(stderr, "ver_check: Error: Unable to read dev file\n");
       return -1;
     }
   }
