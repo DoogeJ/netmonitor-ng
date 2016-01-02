@@ -1,3 +1,10 @@
+Release version 0.5.2 (no code changes)
+Saturday, January 2 2016
+-Happy new year!
+-Updated the methods for building/compiling. No longer using automake since it's overkill
+-Updated the man page
+-Updated the README.md
+
 Release version 0.5.2
 Wednesday, December 30 2015
 -Removed unit forcing
