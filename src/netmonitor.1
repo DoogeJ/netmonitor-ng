@@ -1,4 +1,4 @@
-.TH Netmonitor 0.5.2 "December 30 2015" Linux "User Manual"
+.TH Netmonitor 0.5.2 "January 2 2016" Linux "User Manual"
 .SH NAME
 netmonitor \- Network Bandwidth Monitor
 .SH SYNOPSIS
@@ -7,7 +7,7 @@ netmonitor \- Network Bandwidth Monitor
 
 .SH DESCRIPTION
 .B netmonitor 
-is a console application that monitors network interfaces. It displays the transfer rate (upload and download) for each device and the data consumed by each device. The main features of netmon are low resource usage, a simple yet effective design, and an easy to understand tabular output. It displays values whose units change dynamically to scale with the value. Its compact display fits in a 9x66 size terminal window.
+is a console application that monitors network interfaces. It displays the transfer rate (upload and download) for each device and the data consumed by each device. The main features of netmonitor are low resource usage, a simple yet effective design, and an easy to understand tabular output. It also logs this data so that it can retain these values after a crash or restart. It displays values whose units change dynamically to scale with the value. Its compact display fits in a 9x66 size terminal window.
 
 .SH OPTIONS
 .IP --config 
@@ -15,6 +15,8 @@ Starts the configuration program.
 .IP --help
 Displays the help menu.
 
-.SH AUTHOR
+.SH AUTHORS
+.TP 
 Dwayne Hoy <hellcat82 at iprimus dot com dot au>
-DoogeJ at GitHub
+.TP 
+DoogeJ at GitHub <https://github.com/DoogeJ/netmonitor-ng>
